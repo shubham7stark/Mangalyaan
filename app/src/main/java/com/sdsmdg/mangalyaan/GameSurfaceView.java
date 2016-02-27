@@ -54,6 +54,7 @@ public class GameSurfaceView extends SurfaceView {
                 // TODO Auto-generated method stub
                 gameThread.setRunning(true);
                 gameThread.start();
+                
             }
 
             @Override
