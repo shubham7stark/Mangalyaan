@@ -1,12 +1,17 @@
 package com.sdsmdg.mangalyaan;
 
 import android.annotation.SuppressLint;
+import android.hardware.Sensor;
+import android.hardware.SensorEventListener;
+import android.hardware.SensorManager;
 import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.os.Handler;
 import android.view.MotionEvent;
 import android.view.View;
+import android.widget.Button;
+import android.widget.TextView;
 
 /**
  * An example full-screen activity that shows and hides the system UI (i.e.
@@ -34,6 +39,25 @@ public class FirstScreenActivity extends AppCompatActivity {
     private View mContentView;
     private View mControlsView;
     private boolean mVisible;
+
+    private SensorManager msensorManager;
+    private Sensor msensor,msensorg;
+    private long lastupdate=0;
+    TextView xvalue,yvalue,zvalue,xvaluerot,yvaluerot,zvaluerot;
+    double[] gravity,linear_acceleration;
+    int[] linear_acceleration_new;
+    private static final float NS2S = 1.0f / 1000000000.0f;
+    private final float[] deltaRotationVector = new float[4];
+    private float timestamp;
+    SensorEventListener mAccelerometerSensorListener,mGyroSensorListener;
+    Button start,stop;
+    //    WifiManager wifiManager;
+//    DhcpInfo dhcpInfo;
+//    Socket client=null;
+//    OutputStream outputStream;
+//    DataOutputStream dataOutputStream;
+    double xdisp=0,xv=0,xu=0,dt;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
